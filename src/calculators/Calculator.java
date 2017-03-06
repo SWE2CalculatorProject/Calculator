@@ -98,13 +98,13 @@ public class Calculator {
 			
 				secondNum = Double.parseDouble(textField.getText());
 				switch(operator){
-					case("+"): 	result = firstNum + secondNum;
+					case("+"): 	result = Maths.add(firstNum, secondNum);
 								break;
-					case("-"): 	result = firstNum - secondNum;
+					case("-"): 	result = Maths.subtract(firstNum, secondNum);
 								break;
-					case("*"): 	result = firstNum * secondNum;
+					case("*"): 	result = Maths.multiply(firstNum, secondNum);
 								break;
-					case("/"): 	result = firstNum / secondNum;
+					case("/"): 	result = Maths.divide(firstNum, secondNum);
 								break;
 				}
 				answer = String.format("%.2f", result);
