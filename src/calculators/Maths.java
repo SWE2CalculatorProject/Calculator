@@ -17,5 +17,13 @@ public class Maths {
     public static double divide(double a, double b) {
         return a/b;          
     }
+    
+    public static double modulus(double a, double b) {
+        return a%b;          
+    }
+    
+    public static double power(double a, double b) {
+        return Math.pow(a,b);          
+    }
 
 }
