@@ -16,15 +16,37 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 public class Calculator {
 
 	private JFrame frame;
-	private JTextField textField;
+	private static JTextField textField;
 	
-	private double firstNum = 0.0;
-	private double secondNum = 0.0;
-	private double result = 0.0;
-	private String operator;
-	private String answer;
+	private static double firstNum = 0.0;
+	private static double secondNum = 0.0;
+	private static double result = 0.0;
+	private static String operator = "";
+	private static String answer;
 	
-
+	public static String FindResult (){
+		//secondNum = Double.parseDouble(textField.getText());
+		switch(operator){
+			case("+"): 	result = Maths.add(firstNum, secondNum);
+						break;
+			case("-"): 	result = Maths.subtract(firstNum, secondNum);
+						break;
+			case("*"): 	result = Maths.multiply(firstNum, secondNum);
+						break;
+			case("/"): 	result = Maths.divide(firstNum, secondNum);
+						break;
+			case("%"): 	result = Maths.modulus(firstNum, secondNum);
+			break;
+			case("^"): 	result = Maths.power(firstNum, secondNum);
+			break;
+		}
+		answer = String.format("%.2f", result);
+		textField.setText(answer);
+		return answer ;
+	}
+		
+		
+	
 	/**
 	 * Launch the application.
 	 */
@@ -58,6 +80,7 @@ public class Calculator {
 		frame.setResizable(false);
 		
 		textField = new JTextField();
+		textField.setBounds(164, 11, 146, 54);
 		textField.setFont(new Font("Bodoni MT", Font.BOLD, 20));
 		textField.setHorizontalAlignment(SwingConstants.RIGHT);
 		textField.setColumns(10);
@@ -65,6 +88,7 @@ public class Calculator {
 		/* **************** Row 1 **************** */
 		
 		JButton btnBackSpace = new JButton("<-");
+		btnBackSpace.setBounds(10, 11, 88, 52);
 		btnBackSpace.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -81,19 +105,23 @@ public class Calculator {
 		btnBackSpace.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btnClear = new JButton("C");
+		btnClear.setBounds(104, 11, 54, 52);
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			
+				firstNum=0;
+				secondNum=0;
+				operator="";
 				textField.setText(null);
 			}
 		});
 		btnClear.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btnEqual = new JButton("=");
+		btnEqual.setBounds(126, 241, 54, 52);
 		btnEqual.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			
-				secondNum = Double.parseDouble(textField.getText());
+			    if (!operator.equals(""))
+				secondNum = Double.parseDouble(textField.getText().substring(textField.getText().lastIndexOf(operator)+1));
 				switch(operator){
 					case("+"): 	result = Maths.add(firstNum, secondNum);
 								break;
@@ -107,9 +135,13 @@ public class Calculator {
 					break;
 					case("^"): 	result = Maths.power(firstNum, secondNum);
 					break;
+					case(""): break ;
 				}
 				answer = String.format("%.2f", result);
 				textField.setText(answer);
+				firstNum=0;
+				secondNum=0;
+				operator="";
 			}
 		});
 		btnEqual.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -117,6 +149,7 @@ public class Calculator {
 		/* **************** Row 2 **************** */
 		
 		JButton btn7 = new JButton("7");
+		btn7.setBounds(10, 70, 52, 52);
 		btn7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -127,6 +160,7 @@ public class Calculator {
 		btn7.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btn8 = new JButton("8");
+		btn8.setBounds(67, 70, 52, 52);
 		btn8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -137,6 +171,7 @@ public class Calculator {
 		btn8.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btn9 = new JButton("9");
+		btn9.setBounds(124, 70, 52, 52);
 		btn9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -147,12 +182,34 @@ public class Calculator {
 		btn9.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btnPlus = new JButton("+");
+		btnPlus.setBounds(200, 70, 52, 52);
 		btnPlus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
-				firstNum = Double.parseDouble(textField.getText());
-				textField.setText("");
-				operator = "+";
+				if (operator.equals("")){
+				
+					firstNum = Double.parseDouble(textField.getText());
+					textField.setText("");
+					operator = "+";
+					}
+				else {
+					if (textField.getText().contains("+")){
+//							System.out.println("opnum "+ textField.getText().substring(textField.getText().lastIndexOf("*")+1));
+							secondNum=Double.parseDouble(textField.getText().substring(textField.getText().lastIndexOf(operator)+1));
+				 	        }
+
+					
+					else {
+						secondNum=Double.parseDouble(textField.getText().substring(textField.getText().lastIndexOf(operator)+1));}
+					textField.setText("");
+					result=Double.parseDouble(FindResult());
+
+					firstNum=result ;
+					operator="+";
+					System.out.println(result);
+					textField.setText(result+operator);
+				}
+				
 			}
 		});
 		btnPlus.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -160,6 +217,7 @@ public class Calculator {
 		/* **************** Row 3 **************** */
 		
 		JButton btn4 = new JButton("4");
+		btn4.setBounds(10, 127, 53, 52);
 		btn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -170,6 +228,7 @@ public class Calculator {
 		btn4.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btn5 = new JButton("5");
+		btn5.setBounds(68, 127, 52, 52);
 		btn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -180,6 +239,7 @@ public class Calculator {
 		btn5.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btn6 = new JButton("6");
+		btn6.setBounds(125, 127, 52, 52);
 		btn6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -190,12 +250,33 @@ public class Calculator {
 		btn6.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btnMinus = new JButton("-");
+		btnMinus.setBounds(256, 70, 54, 52);
 		btnMinus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
-				firstNum = Double.parseDouble(textField.getText());
-				textField.setText("");
-				operator = "-";
+				if (operator.equals("")){
+					System.out.println(operator+"op1");
+					firstNum = Double.parseDouble(textField.getText());
+					textField.setText("");
+					operator = "-";
+					}
+				else {
+					if (textField.getText().contains("-")){
+//							System.out.println("opnum "+ textField.getText().substring(textField.getText().lastIndexOf("*")+1));
+							secondNum=Double.parseDouble(textField.getText().substring(textField.getText().lastIndexOf(operator)+1));
+				 	        }
+
+					
+					else {secondNum=Double.parseDouble(textField.getText().substring(textField.getText().lastIndexOf(operator)+1));}
+					textField.setText("");
+					result=Double.parseDouble(FindResult());
+
+					firstNum=result ;
+					operator="-";
+					System.out.println(result);
+					textField.setText(result+operator);
+				}
+				
 			}
 		});
 		btnMinus.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -203,6 +284,7 @@ public class Calculator {
 		/* **************** Row 4 **************** */
 		
 		JButton btn1 = new JButton("1");
+		btn1.setBounds(10, 184, 52, 52);
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -213,6 +295,7 @@ public class Calculator {
 		btn1.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btn2 = new JButton("2");
+		btn2.setBounds(67, 184, 52, 52);
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -223,6 +306,7 @@ public class Calculator {
 		btn2.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btn3 = new JButton("3");
+		btn3.setBounds(124, 184, 52, 52);
 		btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -233,12 +317,33 @@ public class Calculator {
 		btn3.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btnMultiply = new JButton("*");
+		btnMultiply.setBounds(201, 127, 52, 52);
 		btnMultiply.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			
+				
+			if (operator.equals("")){
+				System.out.println(operator+"op1");
 				firstNum = Double.parseDouble(textField.getText());
 				textField.setText("");
 				operator = "*";
+				}
+			else {
+				if (textField.getText().contains("*")){
+						System.out.println("opnum "+ textField.getText().substring(textField.getText().lastIndexOf("*")+1));
+						secondNum=Double.parseDouble(textField.getText().substring(textField.getText().lastIndexOf(operator)+1));
+			 	        }
+
+				
+				else {
+				secondNum=Double.parseDouble(textField.getText().substring(textField.getText().lastIndexOf(operator)+1));;}
+				textField.setText("");
+				result=Double.parseDouble(FindResult());
+
+				firstNum=result ;
+				operator="*";
+				System.out.println(result);
+				textField.setText(result+"*");
+			}
 			}
 		});
 		btnMultiply.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -246,6 +351,7 @@ public class Calculator {
 		/* **************** Row 4 **************** */
 		
 		JButton btnDot = new JButton(".");
+		btnDot.setBounds(10, 241, 54, 52);
 		btnDot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -256,6 +362,7 @@ public class Calculator {
 		btnDot.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btn0 = new JButton("0");
+		btn0.setBounds(69, 241, 52, 52);
 		btn0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -266,6 +373,7 @@ public class Calculator {
 		btn0.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btnPM = new JButton("\u00B1");
+		btnPM.setBounds(200, 184, 52, 52);
 		btnPM.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -277,20 +385,43 @@ public class Calculator {
 		btnPM.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btnDiv = new JButton("/");
+		btnDiv.setBounds(257, 127, 53, 52);
 		btnDiv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
-				firstNum = Double.parseDouble(textField.getText());
-				textField.setText("");
-				operator = "/";
+				if (operator.equals("")){
+					System.out.println(operator+"op1");
+					firstNum = Double.parseDouble(textField.getText());
+					textField.setText("");
+					operator = "/";
+					}
+				else {
+					if (textField.getText().contains("/")){
+							System.out.println("opnum "+ textField.getText().substring(textField.getText().lastIndexOf("*")+1));
+							secondNum=Double.parseDouble(textField.getText().substring(textField.getText().lastIndexOf(operator)+1));
+				 	        }
+
+					
+					else {
+					secondNum=Double.parseDouble(textField.getText().substring(textField.getText().lastIndexOf(operator)+1));}
+					textField.setText("");
+					result=Double.parseDouble(FindResult());
+
+					firstNum=result ;
+					operator="/";
+					System.out.println(result);
+					textField.setText(result+"/");
+				}
 			}
 		});
 		btnDiv.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btnMod = new JButton("Mod");
+		btnMod.setBounds(204, 241, 106, 52);
 		btnMod.setFont(new Font("Tahoma", Font.BOLD, 18));
 		btnMod.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				firstNum = Double.parseDouble(textField.getText());
 				textField.setText("");
 				operator = "%";
@@ -298,6 +429,7 @@ public class Calculator {
 		});
 		
 		JButton button = new JButton("^");
+		button.setBounds(256, 184, 54, 52);
 		button.setFont(new Font("Tahoma", Font.BOLD, 18));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -306,99 +438,28 @@ public class Calculator {
 				operator = "^";
 			}
 		});
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(10)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnBackSpace, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-							.addGap(6)
-							.addComponent(btnClear, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-							.addGap(6)
-							.addComponent(textField, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btn7, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-							.addGap(5)
-							.addComponent(btn8, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-							.addGap(5)
-							.addComponent(btn9, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-							.addGap(24)
-							.addComponent(btnPlus, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-							.addGap(4)
-							.addComponent(btnMinus, GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btn4, GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-							.addGap(5)
-							.addComponent(btn5, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-							.addGap(5)
-							.addComponent(btn6, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-							.addGap(24)
-							.addComponent(btnMultiply, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-							.addGap(4)
-							.addComponent(btnDiv, GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btn1, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-							.addGap(5)
-							.addComponent(btn2, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-							.addGap(5)
-							.addComponent(btn3, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-							.addGap(24)
-							.addComponent(btnPM, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-							.addGap(4)
-							.addComponent(button, GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnDot, GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-							.addGap(5)
-							.addComponent(btn0, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-							.addGap(5)
-							.addComponent(btnEqual, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-							.addGap(24)
-							.addComponent(btnMod, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)))
-					.addGap(13))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(11)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnBackSpace, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-							.addGap(2))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnClear, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-							.addGap(2))
-						.addComponent(textField, GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE))
-					.addGap(5)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btn7, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-						.addComponent(btn8, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-						.addComponent(btn9, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-						.addComponent(btnPlus, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-						.addComponent(btnMinus, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
-					.addGap(5)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btn4, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-						.addComponent(btn5, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-						.addComponent(btn6, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-						.addComponent(btnMultiply, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-						.addComponent(btnDiv, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
-					.addGap(5)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btn1, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-						.addComponent(btn2, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-						.addComponent(btn3, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-						.addComponent(btnPM, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-						.addComponent(button, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
-					.addGap(5)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnDot, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-						.addComponent(btn0, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-						.addComponent(btnEqual, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-						.addComponent(btnMod, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
-					.addGap(9))
-		);
-		frame.getContentPane().setLayout(groupLayout);
+		frame.getContentPane().setLayout(null);
+		frame.getContentPane().add(btnBackSpace);
+		frame.getContentPane().add(btnClear);
+		frame.getContentPane().add(textField);
+		frame.getContentPane().add(btn7);
+		frame.getContentPane().add(btn8);
+		frame.getContentPane().add(btn9);
+		frame.getContentPane().add(btnPlus);
+		frame.getContentPane().add(btnMinus);
+		frame.getContentPane().add(btn4);
+		frame.getContentPane().add(btn5);
+		frame.getContentPane().add(btn6);
+		frame.getContentPane().add(btnMultiply);
+		frame.getContentPane().add(btnDiv);
+		frame.getContentPane().add(btn1);
+		frame.getContentPane().add(btn2);
+		frame.getContentPane().add(btn3);
+		frame.getContentPane().add(btnPM);
+		frame.getContentPane().add(button);
+		frame.getContentPane().add(btnDot);
+		frame.getContentPane().add(btn0);
+		frame.getContentPane().add(btnEqual);
+		frame.getContentPane().add(btnMod);
 	}
 }
