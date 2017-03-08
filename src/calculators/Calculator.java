@@ -9,6 +9,9 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class Calculator {
 
@@ -52,18 +55,16 @@ public class Calculator {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 329, 331);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frame.setResizable(false);
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Bodoni MT", Font.BOLD, 20));
 		textField.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField.setBounds(155, 11, 143, 52);
-		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		/* **************** Row 1 **************** */
 		
-		JButton btnBackSpace = new JButton("Bksp");
+		JButton btnBackSpace = new JButton("<-");
 		btnBackSpace.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -78,8 +79,6 @@ public class Calculator {
 			}
 		});
 		btnBackSpace.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnBackSpace.setBounds(10, 11, 85, 50);
-		frame.getContentPane().add(btnBackSpace);
 		
 		JButton btnClear = new JButton("C");
 		btnClear.addActionListener(new ActionListener() {
@@ -89,8 +88,6 @@ public class Calculator {
 			}
 		});
 		btnClear.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnClear.setBounds(101, 11, 50, 50);
-		frame.getContentPane().add(btnClear);
 		
 		JButton btnEqual = new JButton("=");
 		btnEqual.addActionListener(new ActionListener() {
@@ -116,8 +113,6 @@ public class Calculator {
 			}
 		});
 		btnEqual.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnEqual.setBounds(120, 233, 50, 50);
-		frame.getContentPane().add(btnEqual);
 		
 		/* **************** Row 2 **************** */
 		
@@ -130,8 +125,6 @@ public class Calculator {
 			}
 		});
 		btn7.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btn7.setBounds(10, 68, 50, 50);
-		frame.getContentPane().add(btn7);
 		
 		JButton btn8 = new JButton("8");
 		btn8.addActionListener(new ActionListener() {
@@ -142,8 +135,6 @@ public class Calculator {
 			}
 		});
 		btn8.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btn8.setBounds(65, 68, 50, 50);
-		frame.getContentPane().add(btn8);
 		
 		JButton btn9 = new JButton("9");
 		btn9.addActionListener(new ActionListener() {
@@ -154,8 +145,6 @@ public class Calculator {
 			}
 		});
 		btn9.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btn9.setBounds(120, 68, 50, 50);
-		frame.getContentPane().add(btn9);
 		
 		JButton btnPlus = new JButton("+");
 		btnPlus.addActionListener(new ActionListener() {
@@ -167,8 +156,6 @@ public class Calculator {
 			}
 		});
 		btnPlus.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnPlus.setBounds(194, 68, 50, 50);
-		frame.getContentPane().add(btnPlus);
 		
 		/* **************** Row 3 **************** */
 		
@@ -181,8 +168,6 @@ public class Calculator {
 			}
 		});
 		btn4.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btn4.setBounds(10, 123, 50, 50);
-		frame.getContentPane().add(btn4);
 		
 		JButton btn5 = new JButton("5");
 		btn5.addActionListener(new ActionListener() {
@@ -193,8 +178,6 @@ public class Calculator {
 			}
 		});
 		btn5.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btn5.setBounds(65, 123, 50, 50);
-		frame.getContentPane().add(btn5);
 		
 		JButton btn6 = new JButton("6");
 		btn6.addActionListener(new ActionListener() {
@@ -205,8 +188,6 @@ public class Calculator {
 			}
 		});
 		btn6.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btn6.setBounds(120, 123, 50, 50);
-		frame.getContentPane().add(btn6);
 		
 		JButton btnMinus = new JButton("-");
 		btnMinus.addActionListener(new ActionListener() {
@@ -218,8 +199,6 @@ public class Calculator {
 			}
 		});
 		btnMinus.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnMinus.setBounds(248, 68, 50, 50);
-		frame.getContentPane().add(btnMinus);
 		
 		/* **************** Row 4 **************** */
 		
@@ -232,8 +211,6 @@ public class Calculator {
 			}
 		});
 		btn1.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btn1.setBounds(10, 178, 50, 50);
-		frame.getContentPane().add(btn1);
 		
 		JButton btn2 = new JButton("2");
 		btn2.addActionListener(new ActionListener() {
@@ -244,8 +221,6 @@ public class Calculator {
 			}
 		});
 		btn2.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btn2.setBounds(65, 178, 50, 50);
-		frame.getContentPane().add(btn2);
 		
 		JButton btn3 = new JButton("3");
 		btn3.addActionListener(new ActionListener() {
@@ -256,8 +231,6 @@ public class Calculator {
 			}
 		});
 		btn3.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btn3.setBounds(120, 178, 50, 50);
-		frame.getContentPane().add(btn3);
 		
 		JButton btnMultiply = new JButton("*");
 		btnMultiply.addActionListener(new ActionListener() {
@@ -269,8 +242,6 @@ public class Calculator {
 			}
 		});
 		btnMultiply.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnMultiply.setBounds(194, 123, 50, 50);
-		frame.getContentPane().add(btnMultiply);
 		
 		/* **************** Row 4 **************** */
 		
@@ -283,8 +254,6 @@ public class Calculator {
 			}
 		});
 		btnDot.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnDot.setBounds(10, 233, 50, 50);
-		frame.getContentPane().add(btnDot);
 		
 		JButton btn0 = new JButton("0");
 		btn0.addActionListener(new ActionListener() {
@@ -295,8 +264,6 @@ public class Calculator {
 			}
 		});
 		btn0.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btn0.setBounds(65, 233, 50, 50);
-		frame.getContentPane().add(btn0);
 		
 		JButton btnPM = new JButton("\u00B1");
 		btnPM.addActionListener(new ActionListener() {
@@ -308,8 +275,6 @@ public class Calculator {
 			}
 		});
 		btnPM.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnPM.setBounds(194, 178, 50, 50);
-		frame.getContentPane().add(btnPM);
 		
 		JButton btnDiv = new JButton("/");
 		btnDiv.addActionListener(new ActionListener() {
@@ -321,8 +286,6 @@ public class Calculator {
 			}
 		});
 		btnDiv.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnDiv.setBounds(248, 123, 50, 50);
-		frame.getContentPane().add(btnDiv);
 		
 		JButton btnMod = new JButton("Mod");
 		btnMod.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -333,8 +296,6 @@ public class Calculator {
 				operator = "%";
 			}
 		});
-		btnMod.setBounds(194, 233, 104, 50);
-		frame.getContentPane().add(btnMod);
 		
 		JButton button = new JButton("^");
 		button.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -345,7 +306,99 @@ public class Calculator {
 				operator = "^";
 			}
 		});
-		button.setBounds(248, 178, 50, 50);
-		frame.getContentPane().add(button);
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(10)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnBackSpace, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+							.addGap(6)
+							.addComponent(btnClear, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+							.addGap(6)
+							.addComponent(textField, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btn7, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+							.addGap(5)
+							.addComponent(btn8, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+							.addGap(5)
+							.addComponent(btn9, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+							.addGap(24)
+							.addComponent(btnPlus, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+							.addGap(4)
+							.addComponent(btnMinus, GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btn4, GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+							.addGap(5)
+							.addComponent(btn5, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+							.addGap(5)
+							.addComponent(btn6, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+							.addGap(24)
+							.addComponent(btnMultiply, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+							.addGap(4)
+							.addComponent(btnDiv, GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btn1, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+							.addGap(5)
+							.addComponent(btn2, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+							.addGap(5)
+							.addComponent(btn3, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+							.addGap(24)
+							.addComponent(btnPM, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+							.addGap(4)
+							.addComponent(button, GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnDot, GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+							.addGap(5)
+							.addComponent(btn0, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+							.addGap(5)
+							.addComponent(btnEqual, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+							.addGap(24)
+							.addComponent(btnMod, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)))
+					.addGap(13))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(11)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnBackSpace, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+							.addGap(2))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnClear, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+							.addGap(2))
+						.addComponent(textField, GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE))
+					.addGap(5)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btn7, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+						.addComponent(btn8, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+						.addComponent(btn9, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+						.addComponent(btnPlus, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+						.addComponent(btnMinus, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+					.addGap(5)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btn4, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+						.addComponent(btn5, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+						.addComponent(btn6, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+						.addComponent(btnMultiply, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+						.addComponent(btnDiv, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+					.addGap(5)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btn1, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+						.addComponent(btn2, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+						.addComponent(btn3, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+						.addComponent(btnPM, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+						.addComponent(button, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+					.addGap(5)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnDot, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+						.addComponent(btn0, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+						.addComponent(btnEqual, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+						.addComponent(btnMod, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+					.addGap(9))
+		);
+		frame.getContentPane().setLayout(groupLayout);
 	}
 }
