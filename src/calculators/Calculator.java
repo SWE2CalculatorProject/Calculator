@@ -5,18 +5,26 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+import java.awt.Color;
+import java.awt.SystemColor;
 
 public class Calculator {
 
 	private JFrame frame;
-	private static JTextField textField;
+	private static JLabel textField;
 	
 	private static double firstNum = 0.0;
 	private static double secondNum = 0.0;
@@ -51,6 +59,15 @@ public class Calculator {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException| UnsupportedLookAndFeelException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -75,20 +92,23 @@ public class Calculator {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 329, 345);
+		frame.getContentPane().setBackground(SystemColor.menu);
+		frame.setBounds(100, 100, 340, 462);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
+		frame.setResizable(true);
 		
-		textField = new JTextField();
-		textField.setBounds(10, 11, 300, 48);
+		textField = new JLabel();
+		textField.setBackground(Color.LIGHT_GRAY);
+		textField.setBounds(10, 11, 300, 89);
 		textField.setFont(new Font("Bodoni MT", Font.BOLD, 20));
 		textField.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField.setColumns(10);
+		//textField.setColumns(10);
 		
 		/* **************** Row 1 **************** */
 		
 		JButton btnBackSpace = new JButton("B");
-		btnBackSpace.setBounds(200, 70, 50, 50);
+		btnBackSpace.setBackground(SystemColor.menu);
+		btnBackSpace.setBounds(10, 120, 108, 50);
 		btnBackSpace.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -105,7 +125,8 @@ public class Calculator {
 		btnBackSpace.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btnClear = new JButton("C");
-		btnClear.setBounds(258, 70, 50, 50);
+		btnClear.setBackground(SystemColor.menu);
+		btnClear.setBounds(128, 120, 50, 50);
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				firstNum=0;
@@ -117,7 +138,8 @@ public class Calculator {
 		btnClear.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btnEqual = new JButton("=");
-		btnEqual.setBounds(126, 250, 50, 50);
+		btnEqual.setBackground(SystemColor.menu);
+		btnEqual.setBounds(128, 362, 50, 50);
 		btnEqual.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			    if (!operator.equals(""))
@@ -149,7 +171,8 @@ public class Calculator {
 		/* **************** Row 2 **************** */
 		
 		JButton btn7 = new JButton("7");
-		btn7.setBounds(10, 70, 50, 50);
+		btn7.setBackground(SystemColor.menu);
+		btn7.setBounds(12, 181, 50, 50);
 		btn7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -160,7 +183,8 @@ public class Calculator {
 		btn7.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btn8 = new JButton("8");
-		btn8.setBounds(68, 70, 50, 50);
+		btn8.setBackground(SystemColor.menu);
+		btn8.setBounds(70, 181, 50, 50);
 		btn8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -171,7 +195,8 @@ public class Calculator {
 		btn8.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btn9 = new JButton("9");
-		btn9.setBounds(126, 70, 50, 50);
+		btn9.setBackground(SystemColor.menu);
+		btn9.setBounds(128, 181, 50, 50);
 		btn9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -182,7 +207,8 @@ public class Calculator {
 		btn9.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btnPlus = new JButton("+");
-		btnPlus.setBounds(200, 130, 50, 50);
+		btnPlus.setBackground(SystemColor.menu);
+		btnPlus.setBounds(202, 241, 50, 50);
 		btnPlus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -215,7 +241,8 @@ public class Calculator {
 		/* **************** Row 3 **************** */
 		
 		JButton btn4 = new JButton("4");
-		btn4.setBounds(10, 130, 50, 50);
+		btn4.setBackground(SystemColor.menu);
+		btn4.setBounds(12, 241, 50, 50);
 		btn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -226,7 +253,8 @@ public class Calculator {
 		btn4.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btn5 = new JButton("5");
-		btn5.setBounds(68, 130, 50, 50);
+		btn5.setBackground(SystemColor.menu);
+		btn5.setBounds(70, 241, 50, 50);
 		btn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -237,7 +265,8 @@ public class Calculator {
 		btn5.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btn6 = new JButton("6");
-		btn6.setBounds(126, 130, 50, 50);
+		btn6.setBackground(SystemColor.menu);
+		btn6.setBounds(128, 241, 50, 50);
 		btn6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -248,7 +277,8 @@ public class Calculator {
 		btn6.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btnMinus = new JButton("-");
-		btnMinus.setBounds(258, 130, 50, 50);
+		btnMinus.setBackground(SystemColor.menu);
+		btnMinus.setBounds(260, 241, 50, 50);
 		btnMinus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -279,7 +309,8 @@ public class Calculator {
 		/* **************** Row 4 **************** */
 		
 		JButton btn1 = new JButton("1");
-		btn1.setBounds(10, 190, 50, 50);
+		btn1.setBackground(SystemColor.menu);
+		btn1.setBounds(12, 301, 50, 50);
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -290,7 +321,8 @@ public class Calculator {
 		btn1.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btn2 = new JButton("2");
-		btn2.setBounds(68, 190, 50, 50);
+		btn2.setBackground(SystemColor.menu);
+		btn2.setBounds(70, 301, 50, 50);
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -301,7 +333,8 @@ public class Calculator {
 		btn2.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btn3 = new JButton("3");
-		btn3.setBounds(126, 190, 50, 50);
+		btn3.setBackground(SystemColor.menu);
+		btn3.setBounds(128, 301, 50, 50);
 		btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -312,7 +345,8 @@ public class Calculator {
 		btn3.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btnMultiply = new JButton("*");
-		btnMultiply.setBounds(200, 190, 50, 50);
+		btnMultiply.setBackground(SystemColor.menu);
+		btnMultiply.setBounds(202, 301, 50, 50);
 		btnMultiply.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -343,7 +377,8 @@ public class Calculator {
 		/* **************** Row 4 **************** */
 		
 		JButton btnDot = new JButton(".");
-		btnDot.setBounds(10, 250, 50, 50);
+		btnDot.setBackground(SystemColor.menu);
+		btnDot.setBounds(12, 362, 50, 50);
 		btnDot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -354,7 +389,8 @@ public class Calculator {
 		btnDot.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btn0 = new JButton("0");
-		btn0.setBounds(68, 250, 50, 50);
+		btn0.setBackground(SystemColor.menu);
+		btn0.setBounds(70, 362, 50, 50);
 		btn0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -365,7 +401,8 @@ public class Calculator {
 		btn0.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btnPM = new JButton("\u00B1");
-		btnPM.setBounds(200, 250, 50, 50);
+		btnPM.setBackground(SystemColor.menu);
+		btnPM.setBounds(202, 362, 50, 50);
 		btnPM.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -377,7 +414,8 @@ public class Calculator {
 		btnPM.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btnDiv = new JButton("/");
-		btnDiv.setBounds(258, 190, 50, 50);
+		btnDiv.setBackground(SystemColor.menu);
+		btnDiv.setBounds(260, 301, 50, 50);
 		btnDiv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -406,7 +444,8 @@ public class Calculator {
 		btnDiv.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton button = new JButton("^");
-		button.setBounds(258, 250, 50, 50);
+		button.setBackground(SystemColor.menu);
+		button.setBounds(260, 362, 50, 50);
 		button.setFont(new Font("Tahoma", Font.BOLD, 18));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -437,5 +476,25 @@ public class Calculator {
 		frame.getContentPane().add(btnDot);
 		frame.getContentPane().add(btn0);
 		frame.getContentPane().add(btnEqual);
+		
+		JButton btnNewButton = new JButton("Log");
+		btnNewButton.setBackground(SystemColor.menu);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		btnNewButton.setBounds(202, 181, 50, 50);
+		frame.getContentPane().add(btnNewButton);
+		
+		JButton button_1 = new JButton("exp");
+		button_1.setBackground(SystemColor.menu);
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		button_1.setBounds(260, 181, 50, 50);
+		frame.getContentPane().add(button_1);
 	}
 }
