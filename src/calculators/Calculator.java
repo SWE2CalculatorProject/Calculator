@@ -59,13 +59,13 @@ public class Calculator {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-//		try {
-//			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException| UnsupportedLookAndFeelException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException| UnsupportedLookAndFeelException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 
 		
 		EventQueue.invokeLater(new Runnable() {
@@ -132,7 +132,7 @@ public class Calculator {
 				firstNum=0;
 				secondNum=0;
 				operator="";
-				textField.setText(null);
+				textField.setText("");
 			}
 		});
 		btnClear.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -481,7 +481,22 @@ public class Calculator {
 		btnNewButton.setBackground(SystemColor.menu);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				if(!textField.getText().equals("")){
+				if (operator.equals("")){
+					double num = Double.parseDouble(textField.getText());
+					textField.setText(Math.log10(num)+"");
+					
+				}
+				else {
+					
+					//double num = Double.parseDouble(textField.getText());
+
+					double num = Double.parseDouble(textField.getText().substring(textField.getText().lastIndexOf(operator)+1));
+					textField.setText(result+operator+Math.log10(num)+"");
+
+					
+				}
+				}
 				
 			}
 		});
@@ -492,6 +507,24 @@ public class Calculator {
 		button_1.setBackground(SystemColor.menu);
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				if(!textField.getText().equals("")){
+				if (operator.equals("")){
+					double num = Double.parseDouble(textField.getText());
+					textField.setText(Math.exp(num)+"");
+					
+				}
+				else {
+					
+					//double num = Double.parseDouble(textField.getText());
+
+					double num = Double.parseDouble(textField.getText().substring(textField.getText().lastIndexOf(operator)+1));
+					textField.setText(result+operator+Math.exp(num)+"");
+
+					
+				}
+				}
+
 			}
 		});
 		button_1.setBounds(260, 181, 50, 50);
