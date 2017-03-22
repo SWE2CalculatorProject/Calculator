@@ -59,13 +59,13 @@ public class Calculator {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException| UnsupportedLookAndFeelException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
+//		try {
+//			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException| UnsupportedLookAndFeelException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//
 
 		
 		EventQueue.invokeLater(new Runnable() {
